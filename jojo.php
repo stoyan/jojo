@@ -200,6 +200,7 @@ class Jojo {
             $new = "\n" . Jojo::declarations(false, '  ');
             if (strlen($ret) + strlen($new) >= $max) {
                 $work = false;
+                break;
             } else {
                 $ret .= $new;
             }
@@ -207,6 +208,7 @@ class Jojo {
             $new = "\n" . Jojo::statements(false, '  ');
             if (strlen($ret) + strlen($new) >= $max) {
                 $work = false;
+                break;
             } else {
                 $ret .= $new;
             }
@@ -214,6 +216,7 @@ class Jojo {
             $new = "\n" . Jojo::block('for', '  ');
             if (strlen($ret) + strlen($new) >= $max) {
                 $work = false;
+                break;
             } else {
                 $ret .= $new;
             }
@@ -221,6 +224,7 @@ class Jojo {
             $new = "\n" . Jojo::block('do', '  ');
             if (strlen($ret) + strlen($new) >= $max) {
                 $work = false;
+                break;
             } else {
                 $ret .= $new;
             }
@@ -228,6 +232,7 @@ class Jojo {
             $new = "\n" . Jojo::block('while', '  ');
             if (strlen($ret) + strlen($new) >= $max) {
                 $work = false;
+                break;
             } else {
                 $ret .= $new;
             }
@@ -235,6 +240,7 @@ class Jojo {
             $new = "\n" . Jojo::block('func', '  ');
             if (strlen($ret) + strlen($new) >= $max) {
                 $work = false;
+                break;
             } else {
                 $ret .= $new;
             }
