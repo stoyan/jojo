@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>JoJo - Javascript Junk generator</title>
+    <link rel="stylesheet" href="jojo.css" type="text/css" />
+  </head>
+  <body>
+    <h1>JoJo, the Javascript Junk generator <sup>v.0.0.1-alfa</sup></h1>
+
+    <form action="jojo.php" method="get" id="fo">
+      <div>
+        Generate me <input type="text" id="size" name="size" value="10" />KB
+        worth of Javascript Junk
+        <br />
+        <input type="submit" value="Pleeease..." />
+      </div>
+    </form>
+    <script>
+      document.getElementById('fo').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const s = document.getElementById('size').value;
+          if (isNaN(parseInt(s))) {
+              alert('You can do better, now relax and concentrate on typing a valid number.');
+              return;
+          }
+          const headers = new Headers();
+          headers.append('pragma', 'no-cache');
+          headers.append('cache-control', 'no-cache');
+
+          fetch(fo.action + '?size=' + s, {
+            method: 'GET',
+            headers: headers,
+          })
+            .then((response) => {
+              if (!response.ok) {
+                alert(`HTTP error, status: ${response.status}`);
+              } else {
+                return response.text();
+              }
+            })
+            .then(text => {
+              document.getElementById('thejunk').value = text;
+              document.getElementById('results').style.display = 'block';
+            });
+      });
+      </script>
+
+    <div id="results">
+      <h2>Result</h2>
+      <p>Here is the generated javascript junk:</p>
+      <textarea id="thejunk"></textarea>
+    </div>
+
+    <h2>Web service</h2>
+    <p>
+      You can use this functionality also as a REST web service. Just send a
+      request to:<br />
+      <a href="https://tools.w3clubs.com/jojo/jojo.php?size=1"
+        >https://tools.w3clubs.com/jojo/jojo.php?size=1</a
+      ><br />
+      and replace 1 with the size (in KB) of the file you want to generate.
+    </p>
+  </body>
+</html>
